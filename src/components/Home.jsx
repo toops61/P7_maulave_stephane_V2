@@ -1,14 +1,17 @@
 import bannerHome from '../assets/home.webp';
+import Banner from './Banner';
+import Card from './Card';
+import { useSelector } from 'react-redux';
 
 export default function Home() {
+    const apparts = useSelector(state => state.appartsSlice);
+
   return (
     <div className="home-page">
-        <div className="banner" role="banner">
-            <div className="title-container">
-                <h1>Chez vous, partout et ailleurs</h1>
-            </div>
-            <img src={bannerHome} alt="home" />
-        </div>
+        <Banner imageUrl={bannerHome} title={'Chez vous, partout et ailleurs'} />
+        <section className="cards-container">
+            {apparts.length ? apparts.map(appart => <Card key={appart.id} appart={appart} />) : <></>}
+        </section>
     </div>
   )
 }

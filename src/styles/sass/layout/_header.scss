@@ -3,7 +3,8 @@ header {
     justify-content: space-between;
     align-items: center;
     .logo-container {
-        height: 3.5em;        
+        height: 3.5em;
+        cursor: pointer;        
         img {
             @include imageFit;
         }

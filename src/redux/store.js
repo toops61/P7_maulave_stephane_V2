@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import generalParamsSlice from "./generalParamsSlice";
+import appartsSlice from "./appartsSlice";
 
 const store = configureStore({
     reducer: {
-        generalParamsSlice
+        generalParamsSlice,
+        appartsSlice
     }/* ,
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware()
