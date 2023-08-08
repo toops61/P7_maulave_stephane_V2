@@ -1,0 +1,80 @@
+.logement-page {
+    width: 100%;
+}
+
+.pictures-appart {
+    position: relative;
+    @include flexCenter;
+    width: 100%;
+    height: 25em;
+    border-radius: 1em;
+    overflow: hidden;
+    .top-section {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+        
+    .picture-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 700ms;
+        img {
+            @include imageFit;
+        }
+    }
+    
+    .arrow {
+    position: absolute;
+    top: 40%;
+    width: 2.5em;
+    height: 2.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid .1em white;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 90;
+    &::before {
+        @include icon('\f053',1.2em);
+    }
+    }
+    
+    .left {
+    left: 1.5em;
+    }
+    
+    .right {
+    right: 1.5em;
+    transform: rotate(180deg);
+    }
+    
+    .left-anim {
+    animation: anim-left 800ms forwards linear;
+    }
+    .right-anim {
+    animation: anim-right 800ms forwards linear;
+    }
+    
+    .visible {
+    opacity: 1;
+    }
+    
+    .left-anim .picture-container:nth-child(3),.right-anim .picture-container:nth-child(1) {
+    animation: appears 800ms forwards linear;
+    }
+    .left-anim .picture-container:nth-child(2),.right-anim .picture-container:nth-child(2) {
+    animation: disappears 800ms forwards linear;
+    }
+    
+    button {
+    cursor: pointer;
+    }
+    *,::before {
+    color: rgb(237, 237, 237);
+    }
+}
