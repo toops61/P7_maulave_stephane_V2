@@ -10,35 +10,25 @@
   }
 }
 
-@keyframes disc-bounce {
+@keyframes anim-left {
   0% {
-    transform: translateY(0);
+    transform: translateX(0);
   }
-  90%{
-    transform: translateY(-4em);
+  10% {
+    transform: translateX(-10%);
   }
   100% {
-    transform: translateY(-4em);
+    transform: translateX(100%);
   }
 }
-
-@keyframes disc-rotate {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(1turn);
-  }
-}
-
-@keyframes shadow-grow {
+@keyframes anim-right {
   0% {
-    scale: 3;
+    transform: translateX(0);
   }
-  90%{
-    scale: 1;
+  10% {
+    transform: translateX(10%);
   }
   100% {
-    scale: 1;
+    transform: translateX(-100%);
   }
 }

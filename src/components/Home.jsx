@@ -1,10 +1,10 @@
 import bannerHome from '../assets/home.webp';
 import Banner from './Banner';
 import Card from './Card';
-import { useSelector } from 'react-redux';
+import logementsArray from "../../logements.json";
 
 export default function Home() {
-    const apparts = useSelector(state => state.appartsSlice);
+    const apparts = logementsArray ? logementsArray : [];
 
   return (
     <div className="home-page">

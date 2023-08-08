@@ -1,34 +1,27 @@
-.dark .switch-button {
-    border-color: white;
+.arrow {
+    cursor: pointer;
+    z-index: 5;
+    background-color: transparent;
+    border: none;
     &::before {
-        transform: translateX(1.3em);
-        background-color: #fff;
+        color: white;
+        @include icon('\f054',3.5em);
+        filter: drop-shadow(0px 0px 2px black);
     }
+    &.left {
+        transform: rotate(180deg);
+    }
+    margin: 0 1.5vw;
 }
 
-.back {
-    z-index: 99;
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    top: .5em;
-    left: .5em;
-    &::before {
-        @include icon('\f3e5',2em);
-        @include tablette-version {
-            font-size: 6vw;
-        }
-    }
-    &.hide {
-        display: none;
-    }
-}
-
-button {
-    background-color: black;
-    color: #fff;
-    border: solid;
+.tag-btn {
+    min-width: 15vw;
+    height: 1.8em;
+    @include flexCenter;
+    background-color: $primary-color;
+    margin-right: 1vw;
     border-radius: 1em;
-    padding: .5em 1em;
-    font-size: 1em;
+    p {
+        color: white;
+    }
 }
