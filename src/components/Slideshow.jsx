@@ -31,25 +31,42 @@ export default function Slideshow({ appartImages }) {
   const movePictures = way => {
     if (picturesRef.current.className === 'pictures-container') {
       picturesRef.current.classList.add(`${way}-anim`);
+      const lastIndex = appartImages.length-1;
       setTimeout(() => {
-        way === 'left' ? setCenterIndex(centerIndex > 0 ? (centerIndex-1) : (appartImages.length-1))
-        : setCenterIndex(centerIndex < (appartImages.length-1) ? (centerIndex+1) : 0);
-      }, 1200);
+        fillImages(way);
+      }, 1250);
+      way === 'left' ? setCenterIndex(centerIndex > 0 ? (centerIndex-1) : lastIndex)
+      : setCenterIndex(centerIndex < lastIndex ? (centerIndex+1) : 0);
     }
   }
   
-  const fillImages = () => {
-    const tempArray = [];
-    const leftImageIndex = centerIndex > 0 ? (centerIndex-1) : (appartImages.length-1);
-    const rightImageIndex = centerIndex < (appartImages.length-1) ? (centerIndex+1) : 0;
-    tempArray.push(appartImages[leftImageIndex],appartImages[centerIndex],appartImages[rightImageIndex]);
+  //remove an element and add one
+  const fillImages = way => {
+    const tempArray = [...picturesObjectsArray];
+    const lastIndex = appartImages.length-1;
+    if (way === 'right') {
+      tempArray.shift();
+      tempArray.push(appartImages[(centerIndex+1) < lastIndex ? (centerIndex+2) : 0]);
+    } else {
+      tempArray.pop();
+      tempArray.splice(0,0,appartImages[(centerIndex-1) > 0 ? (centerIndex-2) : lastIndex]);
+    }
     setPicturesObjectsArray(tempArray);
-    picturesRef?.current && (picturesRef.current.className = 'pictures-container');
   }
 
     useEffect(() => {
-      appartImages.length && fillImages();
-    }, [appartImages,centerIndex])
+      if (picturesObjectsArray.length && picturesRef?.current) (picturesRef.current.className = 'pictures-container');
+    }, [picturesObjectsArray])
+    
+
+    useEffect(() => {
+      if (appartImages.length) {
+        const tempArray = [];
+        tempArray.push(appartImages[appartImages.length-1],appartImages[0],appartImages[1]);
+        setPicturesObjectsArray(tempArray);
+      }
+    }, [appartImages])
+    
 
   return (
     <section className="pictures-slide">

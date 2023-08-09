@@ -52,11 +52,11 @@
 }
 
 .left-anim {
-    animation: anim-left 1200ms;
+    animation: anim-left 1200ms forwards;
 }
 
 .right-anim {
-    animation: anim-right 1200ms;
+    animation: anim-right 1200ms forwards;
 }
 
 .appart-infos {
