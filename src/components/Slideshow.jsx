@@ -8,48 +8,30 @@ export default function Slideshow({ appartImages }) {
 
   const picturesRef = useRef();
 
-  /* const toTheLeft = () => {
-    if (picturesRef.current.className === 'pictures-container') {
-      picturesRef.current.classList.add('left-anim');
-      setTimeout(() => {
-        setCenterIndex(centerIndex > 0 ? (centerIndex-1) : (appartImages.length-1));
-        picturesRef.current.classList.remove('left-anim');
-      }, 1200);
-    }
-  }
-
-  const toTheRight = () => {
-    if (picturesRef.current.className === 'pictures-container') {
-      picturesRef.current.classList.add('right-anim');
-      setTimeout(() => {
-        setCenterIndex(centerIndex < (appartImages.length-1) ? (centerIndex+1) : 0);
-        picturesRef.current.classList.remove('right-anim');
-      }, 1200);
-    }
-  } */
-
   const movePictures = way => {
     if (picturesRef.current.className === 'pictures-container') {
       picturesRef.current.classList.add(`${way}-anim`);
       const lastIndex = appartImages.length-1;
+      const newIndex = way === 'left' ? 
+        (centerIndex > 0 ? (centerIndex-1) : lastIndex) :
+        (centerIndex < lastIndex ? (centerIndex+1) : 0);
       setTimeout(() => {
-        fillImages(way);
+        fillImages(way,newIndex);
       }, 1250);
-      way === 'left' ? setCenterIndex(centerIndex > 0 ? (centerIndex-1) : lastIndex)
-      : setCenterIndex(centerIndex < lastIndex ? (centerIndex+1) : 0);
+      setCenterIndex(newIndex);
     }
   }
   
   //remove an element and add one
-  const fillImages = way => {
+  const fillImages = (way,newIndex) => {
     const tempArray = [...picturesObjectsArray];
     const lastIndex = appartImages.length-1;
     if (way === 'right') {
       tempArray.shift();
-      tempArray.push(appartImages[(centerIndex+1) < lastIndex ? (centerIndex+2) : 0]);
+      tempArray.push(appartImages[newIndex < lastIndex ? (newIndex+1) : 0]);
     } else {
       tempArray.pop();
-      tempArray.splice(0,0,appartImages[(centerIndex-1) > 0 ? (centerIndex-2) : lastIndex]);
+      tempArray.splice(0,0,appartImages[newIndex > 0 ? (newIndex-1) : lastIndex]);
     }
     setPicturesObjectsArray(tempArray);
   }

@@ -15,11 +15,12 @@
 }
 
 .tag-btn {
-    min-width: 15vw;
+    min-width: 14vw;
     height: 1.8em;
     @include flexCenter;
     background-color: $primary-color;
     margin-right: 1vw;
+    margin-bottom: .5em;
     border-radius: 1em;
     p {
         color: white;

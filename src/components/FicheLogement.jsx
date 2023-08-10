@@ -3,21 +3,36 @@ import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import logementsArray from "../../logements.json";
 import Slideshow from "./Slideshow";
+import starSvg from '../assets/star.svg';
+import pinkStarSvg from '../assets/pink-star.svg';
 
 export default function FicheLogement() {
   const [appart, setAppart] = useState(null);
   const [appartImages, setAppartImages] = useState([]);
+  const [starsArray, setStarsArray] = useState([]);
 
   console.log(appart);
 
   const apparts = logementsArray ? logementsArray : [];
 
   const {id} = useParams();
+
+  const buildStars = rate => {
+    const tempArray = [];
+    for (let i = 0; i < 5; i++) {
+      const star = i < rate ? 1 : 2;
+      tempArray.push(star);
+    }
+    setStarsArray(tempArray);
+  }
   
   useEffect(() => {
     const appartFound = apparts.find(e => e.id === id);
     appartFound && setAppart(appartFound);
-    if (appartFound && appartFound.pictures) setAppartImages(appartFound.pictures.map(image => ({url:image,id:uuidv4()})));
+    if (appartFound && appartFound.pictures) {
+      setAppartImages(appartFound.pictures.map(image => ({url:image,id:uuidv4()})));
+      buildStars(appartFound.rating);
+    }
   }, [])
 
   return (
@@ -39,6 +54,15 @@ export default function FicheLogement() {
             <div className="photo-container">
               <img src={appart?.host.picture} alt="host" />
             </div>
+          </div>
+          <div className="stars-container">
+            {starsArray.map((star,index) => {
+              return (
+              <div className="star" key={'star'+index}>
+                <img src={star === 2 ? starSvg : pinkStarSvg} alt="star" />
+              </div>
+              )
+            })}
           </div>
         </div>
       </section>
