@@ -1,0 +1,47 @@
+.dropdown-container {
+    width: 43vw;
+    overflow: hidden;
+    &.open {
+        .chevron {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.title-bar {
+    position: relative;
+    padding: .5em 1em;
+    background-color: $primary-color;
+    border-radius: .5em;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h4 {
+        color: white;
+        font-size: .9em;
+    }
+}
+
+.chevron {
+    @include flexCenter;
+    transition: transform .4s;
+    &::before {
+        color: white;
+        @include icon('\f078')
+    }
+}
+
+.text-container {
+    transition: transform .8s,height .9s;
+    background-color: $light-background;
+    border-radius: 0 0 .5em .5em;
+}
+
+.text-infos {
+    padding: 1em 2vw;
+    p {
+        margin-bottom: .2em;
+    }
+    
+}

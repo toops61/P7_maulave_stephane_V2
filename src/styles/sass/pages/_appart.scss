@@ -128,3 +128,9 @@
         @include imageFit;
     }
 }
+
+.infos-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

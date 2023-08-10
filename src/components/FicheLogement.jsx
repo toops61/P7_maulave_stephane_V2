@@ -5,11 +5,13 @@ import logementsArray from "../../logements.json";
 import Slideshow from "./Slideshow";
 import starSvg from '../assets/star.svg';
 import pinkStarSvg from '../assets/pink-star.svg';
+import TextContainer from "./TextContainer";
 
 export default function FicheLogement() {
   const [appart, setAppart] = useState(null);
   const [appartImages, setAppartImages] = useState([]);
   const [starsArray, setStarsArray] = useState([]);
+  const [maxHeight, setMaxHeight] = useState(0);
 
   console.log(appart);
 
@@ -24,6 +26,10 @@ export default function FicheLogement() {
       tempArray.push(star);
     }
     setStarsArray(tempArray);
+  }
+
+  const findHeight = heightText => {
+    heightText > maxHeight && setMaxHeight(heightText);
   }
   
   useEffect(() => {
@@ -66,8 +72,9 @@ export default function FicheLogement() {
           </div>
         </div>
       </section>
-      <section>
-
+      <section className="infos-container">
+        <TextContainer arrayText={[appart?.description]} findHeight={findHeight} maxHeight={maxHeight} >Description</TextContainer>
+        <TextContainer arrayText={appart?.equipments} findHeight={findHeight} maxHeight={maxHeight} >Equipements</TextContainer>
       </section>
     </div>
   )
