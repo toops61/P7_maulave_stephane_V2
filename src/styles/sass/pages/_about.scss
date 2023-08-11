@@ -1,0 +1,12 @@
+.about-page {
+    @include flexColumn;
+}
+
+.dropdowns-container {
+    @include flexColumn;
+    width: 80%;
+    .dropdown-container {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+}

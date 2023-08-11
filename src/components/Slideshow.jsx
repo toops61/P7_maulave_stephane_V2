@@ -5,6 +5,7 @@ export default function Slideshow({ appartImages }) {
 
   const [centerIndex, setCenterIndex] = useState(0);
   const [picturesObjectsArray, setPicturesObjectsArray] = useState([]);
+  const [slideShow, setSlideShow] = useState(false);
 
   const picturesRef = useRef();
 
@@ -42,16 +43,22 @@ export default function Slideshow({ appartImages }) {
     
 
     useEffect(() => {
-      if (appartImages.length) {
+      const length = appartImages?.length;
+      if (length) {
         const tempArray = [];
-        tempArray.push(appartImages[appartImages.length-1],appartImages[0],appartImages[1]);
+        tempArray.push(appartImages[0]);
+        if (length > 1) {
+          tempArray.splice(0,0,appartImages[length-1])
+          tempArray.push(appartImages[1]);
+        } 
         setPicturesObjectsArray(tempArray);
+        setSlideShow(tempArray.length > 1 ? true : false);
       }
     }, [appartImages])
     
 
   return (
-    <section className="pictures-slide">
+    slideShow ? <section className="pictures-slide">
         <button className="arrow left" onClick={() => movePictures('left')}></button>
         <div className="index-shown">
           <p>{(centerIndex+1)+' / '+appartImages.length}</p>
@@ -71,6 +78,11 @@ export default function Slideshow({ appartImages }) {
               </div>
             </div> : <></>}
         </div>
+    </section> : 
+    <section className="pictures-slide">
+      <div className="picture-appart">
+        {picturesObjectsArray.length ? <img src={picturesObjectsArray[0].url} alt="appart" /> : <></>}
+      </div>
     </section>
   )
 }

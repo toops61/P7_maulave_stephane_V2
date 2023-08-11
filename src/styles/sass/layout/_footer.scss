@@ -1,0 +1,16 @@
+footer {
+    background-color: black;
+    @include flexColumn;
+    padding: 1em;
+    .logo {
+        @include flexCenter;
+        margin: 1em;
+        height: 2em;
+        img {
+            @include imageFit;
+        }
+    }
+    p {
+        color: white;
+    }
+}

@@ -13,8 +13,6 @@ export default function FicheLogement() {
   const [starsArray, setStarsArray] = useState([]);
   const [maxHeight, setMaxHeight] = useState(0);
 
-  console.log(appart);
-
   const apparts = logementsArray ? logementsArray : [];
 
   const {id} = useParams();
@@ -73,8 +71,8 @@ export default function FicheLogement() {
         </div>
       </section>
       <section className="infos-container">
-        <TextContainer arrayText={[appart?.description]} findHeight={findHeight} maxHeight={maxHeight} >Description</TextContainer>
-        <TextContainer arrayText={appart?.equipments} findHeight={findHeight} maxHeight={maxHeight} >Equipements</TextContainer>
+        <TextContainer arrayText={[appart?.description]} findHeight={findHeight} maxHeight={maxHeight} sameHeight={true} >Description</TextContainer>
+        <TextContainer arrayText={appart?.equipments} findHeight={findHeight} maxHeight={maxHeight} sameHeight={true} >Equipements</TextContainer>
       </section>
     </div>
   )

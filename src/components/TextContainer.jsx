@@ -1,30 +1,34 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from "react";
 
-export default function TextContainer({children,arrayText,findHeight,maxHeight }) {
+export default function TextContainer({children,arrayText,findHeight,maxHeight,sameHeight }) {
     const [open, setOpen] = useState(false);
+    const [containerHeight, setContainerHeight] = useState(0);
 
     const refText = useRef();
     const containerRef = useRef();
-
+    
     useEffect(() => {
-        refText?.current && findHeight(refText.current.offsetHeight);
-    }, [arrayText])
+        const max = maxHeight ? maxHeight : 0;
+        setContainerHeight(!sameHeight && refText?.current ? refText.current.offsetHeight : max);
+    }, [refText,maxHeight,arrayText]);
+    
+    useEffect(() => {
+        if (refText?.current && sameHeight) findHeight(refText.current.offsetHeight);
+    }, [arrayText]);
 
     useEffect(() => {
         if (containerRef?.current) {
-            console.log(containerRef.current.style);
             const style = containerRef.current.style;
-            if (maxHeight && open) {
-                style.height = (maxHeight+10+'px');
+            if (containerHeight && open) {
+                style.height = (containerHeight+10+'px');
                 style.transform = (`translateY(0)`);
             } else {
                 style.height = '0';
-                style.transform = (`translateY(-${maxHeight+10+'px'})`);
+                style.transform = (`translateY(-${containerHeight+10+'px'})`);
             }
-
-        } 
-    }, [maxHeight,open])
+        }
+    }, [containerHeight,open]);
     
 
   return (
