@@ -29,17 +29,16 @@ export default function TextContainer({children,arrayText,findHeight,maxHeight,s
             }
         }
     }, [containerHeight,open]);
-    
 
   return (
     <div className={"dropdown-container" + (open ? " open" : "")}>
         <div className="title-bar">
-            <h4>{children}</h4>
-            <div className="chevron" onClick={() => setOpen(!open)}></div>
+            <p tabIndex={0}>{children}</p>
+            <div className="chevron" onClick={() => setOpen(!open)} tabIndex={0}></div>
         </div>
         <div className="text-container" ref={containerRef}>
             {arrayText?.length ? <div className="text-infos" ref={refText}>
-                {arrayText.map((text,index) => <p key={'text'+index}>{text}</p>)}
+                {arrayText.map((text,index) => <p key={'text'+index} tabIndex={0}>{text}</p>)}
             </div> : <></>}
         </div>
     </div>

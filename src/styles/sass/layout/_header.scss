@@ -2,11 +2,17 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     .logo-container {
+        width: 11em;
         height: 3.5em;
-        cursor: pointer;        
+        cursor: pointer;   
         img {
             @include imageFit;
+        }
+        @include mobile-version {
+            height: 3em;
+            width: 9em;
         }
     }
 }

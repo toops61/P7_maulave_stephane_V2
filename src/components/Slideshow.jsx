@@ -18,7 +18,7 @@ export default function Slideshow({ appartImages }) {
         (centerIndex < lastIndex ? (centerIndex+1) : 0);
       setTimeout(() => {
         fillImages(way,newIndex);
-      }, 1250);
+      }, 1200);
       setCenterIndex(newIndex);
     }
   }
@@ -58,12 +58,12 @@ export default function Slideshow({ appartImages }) {
     
 
   return (
-    slideShow ? <section className="pictures-slide">
-        <button className="arrow left" onClick={() => movePictures('left')}></button>
+    slideShow ? <section className="pictures-slide" tabIndex={0}>
+        <div className="arrow left" onClick={() => movePictures('left')} role="navigation" tabIndex={0}></div>
         <div className="index-shown">
-          <p>{(centerIndex+1)+' / '+appartImages.length}</p>
+          <p tabIndex={0}>{(centerIndex+1)+' / '+appartImages.length}</p>
         </div>
-        <button className="arrow right" onClick={() => movePictures('right')}></button>
+        <div className="arrow right" onClick={() => movePictures('right')} role="navigation" tabIndex={0}></div>
         <div className="top-section">
           {picturesObjectsArray.length ?
             <div className="pictures-container" ref={picturesRef}>

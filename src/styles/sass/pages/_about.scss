@@ -10,3 +10,13 @@
         margin-bottom: 1em;
     }
 }
+
+@include mobile-version {
+    .about-page .banner {
+        height: 14em;
+        margin-bottom: 1em;
+    }
+    .dropdowns-container {
+        width: 100%;
+    }
+}

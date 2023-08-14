@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div className="home-page">
-        <Banner imageUrl={bannerHome} title={'Chez vous, partout et ailleurs'} />
+        <Banner imageUrl={bannerHome} title={'Chez vous,\n partout et ailleurs'} />
         <section className="cards-container">
             {apparts.length ? apparts.map(appart => <Card key={appart.id} appart={appart} />) : <></>}
         </section>

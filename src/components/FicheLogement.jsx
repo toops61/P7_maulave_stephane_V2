@@ -32,10 +32,17 @@ export default function FicheLogement() {
   
   useEffect(() => {
     const appartFound = apparts.find(e => e.id === id);
-    appartFound && setAppart(appartFound);
-    if (appartFound && appartFound.pictures) {
-      setAppartImages(appartFound.pictures.map(image => ({url:image,id:uuidv4()})));
-      buildStars(appartFound.rating);
+    if (appartFound) {
+      let hostName = appartFound?.host?.name ? appartFound.host.name : '';
+      if (hostName) {
+        hostName = hostName.replace(' ','\n');
+        appartFound.host.name = hostName;
+      } 
+      setAppart(appartFound);
+      if (appartFound.pictures) {
+        setAppartImages(appartFound.pictures.map(image => ({url:image,id:uuidv4()})));
+        buildStars(appartFound.rating);
+      }
     }
   }, [])
 
@@ -44,22 +51,22 @@ export default function FicheLogement() {
       <Slideshow appartImages={appartImages} />
       <section className="appart-infos">
         <div className="title-container">
-          <h1>{appart?.title}</h1>
-          <p className="location">{appart?.location}</p>
+          <h1 tabIndex={0}>{appart?.title}</h1>
+          <h2 className="location" tabIndex={0}>{appart?.location}</h2>
           <div className="tags-container">
-            {appart?.tags?.map((tag,index) => <div className="tag-btn" key={'tag'+index}>
+            {appart?.tags?.map((tag,index) => <div className="tag-btn" key={'tag'+index} tabIndex={0}>
               <p>{tag}</p>
             </div>)}
           </div>
         </div>
         <div className="host-container">
           <div className="person">
-            <p>{appart?.host.name}</p>
+            <p tabIndex={0}>{appart?.host.name}</p>
             <div className="photo-container">
-              <img src={appart?.host.picture} alt="host" />
+              <img src={appart?.host.picture} alt="host" tabIndex={0}/>
             </div>
           </div>
-          <div className="stars-container">
+          <div className="stars-container" tabIndex={0}>
             {starsArray.map((star,index) => {
               return (
               <div className="star" key={'star'+index}>

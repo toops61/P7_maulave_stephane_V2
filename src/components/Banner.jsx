@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 export default function Banner(props) {
-    const {title,imageUrl} = props;
+    const {title,imageUrl} = props;    
 
   return (
     <section className="banner" role="banner" tabIndex={0}>

@@ -4,16 +4,6 @@
     object-fit: $fit;
 }
 
-@mixin position ($top: 0px, $right: 0px) {
-    top: $top;
-    right: $right;
-}
-
-@mixin positionTopLeft ($top: 0, $left: 0) {
-    top: $top;
-    left: $left;
-}
-
 @mixin btn-shadow ($offsetX: 2px, $offsetY: 2px, $blur: 14px, $color: black)  {
     box-shadow: $offsetX $offsetY $blur $color;
 }
@@ -28,41 +18,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-@mixin mobile-version {
-    @media screen and (max-width:$breakpoint-mobile) {
-        @content;
-    }
-}
-
-@mixin tablette-version {
-    @media screen and (max-width:$breakpoint-ipad) {
-        @content;
-    }
-}
-
-@mixin iconBrands ($content: "\f09a", $font-size: 1.4em) {
-    content: $content;
-    font-family: 'Font Awesome 6 brands';
-    font-weight: 400;
-    font-size: $font-size;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-    margin: 1rem;
-}
-
-@mixin iconEmpty ($content: "\f005", $font-size: 1.4em) {
-    content: $content;
-    font-family: 'Font Awesome 6 empty';
-    font-weight: 400;
-    font-size: $font-size;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
 }
 
 @mixin icon ($content: '\f3e5', $font-size: 1em) {
@@ -80,8 +35,14 @@
     text-shadow: 1px 1px 2px black;
 }
 
+@mixin mobile-version {
+    @media (orientation: portrait) {
+        @content;
+    }
+}
+
 @mixin adapt-size ($font-size: 4vw) {
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 800px) {
         * {
             font-size: $font-size;
         }

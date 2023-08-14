@@ -67,14 +67,12 @@
         display: flex;
         flex-direction: column;
     }
-    p {
-        font-size: .9em;
-    }
     h1 {
         font-size: 1.4em;
     }
-    .tag-btn p {
-        font-size: .8em;
+    h2 {
+        font-size: .9em;
+        font-weight: normal;
     }
     .location {
         margin-top: .5em;
@@ -100,13 +98,15 @@
     align-items: center;
     p {
         font-size: 1.2em;
+        white-space:pre-line;
+        text-align: end;
     }
     .photo-container {
         border-radius: 50%;
         width: 4em;
         height: 4em;
         overflow: hidden;
-        margin-left: 1vw;
+        margin-left: 3vw;
         img {
             @include imageFit;
         }
@@ -114,16 +114,16 @@
 }
 
 .stars-container {
-    width: 20vw;
+    //width: 20vw;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-top: 1em;
 }
 
 .star {
-    width: 2em;
-    height: 2em;
+    width: 1.3em;
+    height: 1.3em;
+    margin: 0 .8vw;
     img {
         @include imageFit;
     }
@@ -133,4 +133,36 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+@include mobile-version {
+    .pictures-slide {
+        height: 16em;
+    }
+    .appart-infos {
+        flex-direction: column;
+    }
+    .tags-container {
+        max-width: none;
+    }
+    .index-shown {
+        display: none;
+    }
+    .host-container {
+        width: 100%;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1em;
+    }
+    .stars-container {
+        margin-top: 0;
+    }
+    .infos-container {
+        flex-direction: column;
+        .dropdown-container {
+            width: 100%;
+            margin-bottom: 1em;
+        }
+    }
 }

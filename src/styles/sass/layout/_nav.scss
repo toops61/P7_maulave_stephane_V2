@@ -7,4 +7,20 @@
         margin: 0 2vw;
         cursor: pointer;
     }
+    .underline {
+        display: none;
+        height: .1em;
+        width: 100%;
+        background-color: $primary-color;
+    }
+    a {
+        font-size: 1.3em;
+        &.active .underline {
+            display: block;
+        }
+        @include mobile-version {
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+    }
 }
