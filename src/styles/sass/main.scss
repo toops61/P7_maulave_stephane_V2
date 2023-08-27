@@ -1,7 +1,5 @@
 @import "./utils/variables";
-@import "./utils/functions";
 @import "./utils/mixins";
-@import "./utils/extensions";
 @import "./utils/keyframes";
 
 @import "./base/base";
@@ -12,7 +10,6 @@
 
 @import "./layout/footer";
 @import "./layout/header";
-@import "./layout/loader";
 @import "./layout/nav";
 
 @import "./pages/home";

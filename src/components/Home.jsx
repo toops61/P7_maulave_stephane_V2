@@ -1,11 +1,10 @@
+/* eslint-disable react/prop-types */
 import bannerHome from '../assets/home.webp';
 import Banner from './Banner';
 import Card from './Card';
-import logementsArray from "../../logements.json";
 
-export default function Home() {
+export default function Home({ logementsArray }) {
     const apparts = logementsArray ? logementsArray : [];
-
   return (
     <div className="home-page">
         <Banner imageUrl={bannerHome} title={'Chez vous,\n partout et ailleurs'} />

@@ -1,13 +1,13 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
-import logementsArray from "../../logements.json";
 import Slideshow from "./Slideshow";
 import starSvg from '../assets/star.svg';
 import pinkStarSvg from '../assets/pink-star.svg';
 import TextContainer from "./TextContainer";
 
-export default function FicheLogement() {
+export default function FicheLogement({ logementsArray }) {
   const [appart, setAppart] = useState(null);
   const [appartImages, setAppartImages] = useState([]);
   const [starsArray, setStarsArray] = useState([]);
@@ -31,7 +31,8 @@ export default function FicheLogement() {
   }
   
   useEffect(() => {
-    const appartFound = apparts.find(e => e.id === id);
+    const appartsTemp = apparts.length ? apparts : (sessionStorage.logementsArray ? JSON.parse(sessionStorage.getItem('logementsArray')) : []);
+    const appartFound = appartsTemp.find(e => e.id === id);
     if (appartFound) {
       let hostName = appartFound?.host?.name ? appartFound.host.name : '';
       if (hostName) {

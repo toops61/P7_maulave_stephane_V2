@@ -4,10 +4,6 @@
     object-fit: $fit;
 }
 
-@mixin btn-shadow ($offsetX: 2px, $offsetY: 2px, $blur: 14px, $color: black)  {
-    box-shadow: $offsetX $offsetY $blur $color;
-}
-
 @mixin flexColumn {
     display: flex;
     flex-direction: column;
